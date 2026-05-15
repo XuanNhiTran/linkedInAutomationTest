@@ -141,7 +141,14 @@ npx playwright test --project=chrome-iphone13 --project=edge-galaxys9
 ~~~bash
 npx playwright show-report <report_path>
 ~~~
-
+e.g: chrome-edge-desktop:
+~~~bash
+npx playwright show-report playwright-report\all-projects\chrome-edge-desktop-reports-PASSED
+~~~
+e.g: chrome-edge-mobile
+~~~bash
+npx playwright show-report playwright-report\all-projects\chrome-edge-mobile-FAILED
+~~~
 
 ## 8) Where latest results are stored
 
