@@ -1,0 +1,29 @@
+{
+  "name": "linkedin-easy-apply-playwright",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Playwright TypeScript automation for LinkedIn Easy Apply flow",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:chrome-desktop": "node scripts/run-project.js chrome-desktop",
+    "test:edge-desktop": "node scripts/run-project.js edge-desktop",
+    "test:chrome-mobile": "node scripts/run-project.js chrome-iphone13",
+    "test:edge-mobile": "node scripts/run-project.js edge-galaxys9",
+    "test:chrome": "npm run test:chrome-desktop",
+    "test:edge": "npm run test:edge-desktop",
+    "test:mobile": "npm run test:chrome-mobile && npm run test:edge-mobile",
+    "test:debug": "playwright test --debug",
+    "report": "playwright show-report playwright-report/all-projects",
+    "report:chrome-desktop": "playwright show-report playwright-report/chrome-desktop",
+    "report:edge-desktop": "playwright show-report playwright-report/edge-desktop",
+    "report:chrome-mobile": "playwright show-report playwright-report/chrome-iphone13",
+    "report:edge-mobile": "playwright show-report playwright-report/edge-galaxys9"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.55.0",
+    "@types/node": "^22.10.1",
+    "dotenv": "^16.4.5",
+    "typescript": "^5.6.3"
+  }
+}

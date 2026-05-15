@@ -1,0 +1,49 @@
+name: LinkedIn Easy Apply E2E
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 9 * * 1-5'
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        project: [chrome-desktop, edge-desktop, chrome-iphone13, edge-galaxys9]
+    env:
+      LINKEDIN_USER1_EMAIL: ${{ secrets.LINKEDIN_USER1_EMAIL }}
+      LINKEDIN_USER1_PASSWORD: ${{ secrets.LINKEDIN_USER1_PASSWORD }}
+      LINKEDIN_USER2_EMAIL: ${{ secrets.LINKEDIN_USER2_EMAIL }}
+      LINKEDIN_USER2_PASSWORD: ${{ secrets.LINKEDIN_USER2_PASSWORD }}
+      CI: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps chrome msedge
+
+      - name: Run tests (${{ matrix.project }})
+        run: npx playwright test --project=${{ matrix.project }}
+
+      - name: Upload HTML report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-${{ matrix.project }}
+          path: playwright-report/
+          retention-days: 14
