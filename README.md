@@ -88,7 +88,7 @@ LINKEDIN_USER2_PASSWORD=your_password_2
 
 If credentials are missing, setup will create empty auth states and tests that require login may be skipped.
 
-### 4.8 Common errors
+### 4.6 Common errors
 
 1. Error: command not found (node/npm/git)
 Cause: tool is not installed or terminal not restarted after install.
